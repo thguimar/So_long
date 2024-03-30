@@ -1,0 +1,2 @@
+cc -Wall -Werror -Wextra -g so_long.c animations.c check_file.c check_map.c ft_animations_utils.c ft_exit_door.c ft_get_map.c ft_itoa.c ft_join_strings.c ft_put_text.c ft_split.c map_utils.c movement.c put_image.c put_img_utils.c -L../minilibx-linux -lmlx_Linux -lXext -lX11 ../get_next_line/get_next_line.c -I../get_next_line ../get_next_line/get_next_line_utils.c
+

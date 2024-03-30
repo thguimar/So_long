@@ -1,0 +1,16 @@
+mlx_string_put
+
+character
+character_with_lantern
+door
+ground
+ground_with_lantern
+lantern
+parchment
+ground_with_parchment
+wall
+ground_with_character
+enemy
+ground_with_enemy
+ground_with_door
+ground_with_character_with_lantern
