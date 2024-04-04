@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:35:34 by thguimar          #+#    #+#             */
-/*   Updated: 2024/03/30 15:42:38 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:57:09 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void lantern(t_vars	*v)
 	v->lantern--;
 	v->map[(v->y_p / 32)][(v->x_p / 32)] = '0';
 	v->img = mlx_xpm_file_to_image(
-			v->mlx, "../assets/ground.xpm", &img_w, &img_h);
+			v->mlx, "Assets/ground.xpm", &img_w, &img_h);
 /*	mlx_put_image_to_window(
 		v->mlx, v->win, v->assets.wall->img, v->x_p, v->y_p);*/
 }
@@ -33,7 +33,7 @@ static void	collected(t_vars *v)
 	v->collect--;
 	v->map[(v->y_p / 32)][(v->x_p / 32)] = '0';
 	v->img = mlx_xpm_file_to_image(
-			v->mlx, "../assets/ground.xpm", &img_w, &img_h);
+			v->mlx, "Assets/ground.xpm", &img_w, &img_h);
 /*	mlx_put_image_to_window(
 		v->mlx, v->win, v->assets.ground_with_character->img, v->x_p, v->y_p);*/
 }

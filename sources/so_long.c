@@ -92,53 +92,40 @@ static void	init_vars(t_vars *vars)
 	vars->movement = 0;
 	vars->win_w = ft_strlen(vars->map[0]);
 	vars->win_h = get_height(vars->map);
-	vars->e_vars.sign = 1;
-	vars->e_vars.x = 0;
-	vars->e_vars.sleep = 5;
-	vars->e_vars.sleep_for_move = 60;
-	vars->e_vars.path_to_move = 0;
 }
 
 int	main(int argc, char **argv)
 {
 	t_vars	vars;
+	int	i;
 
+	i = 0;
 	if (argc != 2)
 	{
 		perror("ERROR");
 		exit(1);
 	}
 	(void)argv;
-	//checkar se o file e valido com argv[1]
 	check_file_is_valid(argv[1]);
-	/*atribuir mapa a "vars.map"*/
 	vars.map = get_map(argv[1]);
-	//se vars.map diferente de nulo
 	if (vars.map != NULL)
 	{
-	//	checkar validade do mapa;
 		check_map_valid(&vars);
-	//	inicializar variaveis;
 		init_vars(&vars);
-	//	mlx_init
 		vars.mlx = mlx_init();
-	//	mlx_new_window
 		vars.win = mlx_new_window (vars.mlx,
 			       	vars.win_w * 32, vars.win_h * 32, "So-Long");
-	//	renderizar mapa
 		render_map(&vars);
-	//	mlx_hook
 		mlx_string_put(vars.mlx, vars.win, 5, 10, 0xffffff, "Move: 0");
-	//	mlx_loop_hook(vars.mlx, animation, &vars);
 		mlx_hook(vars.win, 2, (1L << 0), key_hook, &vars);
-	//	mlx_hook
 		mlx_hook(vars.win, 17, (1L << 0), ft_exit, &vars);
-	//	mlx_string_put
-	//	mlx_string_put(vars.mlx, vars.win, 5, 10, 0xffffff, "Move: 0");
-	//	mlx_loop_hook
-	//	mlx_loop_hook(vars.mlx, animation, &vars);
-	//	mlx_loop
 		mlx_loop(vars.mlx);
 	}
+	while (vars.map[i] != NULL)
+	{
+		free(vars.map[i]);
+		i++;
+	}
+	assets_cleaner(&vars);
 	return (0);
 }

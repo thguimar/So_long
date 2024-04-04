@@ -9,7 +9,7 @@
 /*   Updated: 2024/03/25 15:32:56 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "so_long.h"
 
 static int	check(t_vars ***vars, int x, int y)
@@ -50,4 +50,4 @@ int	get_position_for_enemy(t_vars **vars)
 	}
 	return (1);
 }
-
+*/

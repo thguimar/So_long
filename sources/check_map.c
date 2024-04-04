@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:00:09 by thguimar          #+#    #+#             */
-/*   Updated: 2024/03/30 15:59:41 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:19:34 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,17 @@ static void check_walls(t_vars *v)
 
 	message = "[ERROR] Not surrounded by walls";
 	if (check_line(v->map[0]))
-	{
-		printf("error 1");
 		ft_error (v, message);
-	}
 	i = get_height(v->map) - 1;
 	while (i)
 	{
 		if (v->map[i][0] != '1' ||
 			v->map[i][ft_strlen(v->map[i]) - 1] != '1')
-		{
-			printf("error 2");
 			ft_error(v, message);
-		}
 		i--;
 	}
 	if (check_line(v->map[get_height(v->map) - 1]))
 	{
-		printf("error 3");
 		ft_error (v, message);
 	}
 }
@@ -101,4 +94,7 @@ void	check_map_valid(t_vars *vars)
 	check_is_rectangular(vars);
 	check_walls(vars);
 	check_elements(vars);
+	flood_fill(vars->map, 0, 0);
+	check_c(vars->map);
+	check_e(vars->map);
 }

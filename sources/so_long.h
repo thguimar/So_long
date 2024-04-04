@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:12:51 by thguimar          #+#    #+#             */
-/*   Updated: 2024/03/30 15:34:35 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:09:57 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,6 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <X11/keysym.h>
-
-typedef struct	s_enemy
-{
-	int	x_e;
-	int	y_e;
-	int	sign;
-	int	x;
-	int	path_to_move;
-	int	sleep;
-	int	sleep_for_move;
-	char	*imgs[5];
-}	t_enemy_vars;
 
 typedef struct s_imgs
 {
@@ -55,8 +43,6 @@ typedef struct s_assets {
 	t_imgs	*parchment;
 	t_imgs	*ground_with_parchment;
 	t_imgs	*wall;
-	t_imgs	*enemy;
-	t_imgs	*ground_with_enemy;
 	t_imgs	*ground_with_door;
 	t_imgs	*ground_with_character_with_lantern;
 	t_imgs	*character_left;
@@ -79,7 +65,6 @@ typedef struct s_vars {
 	int				lantern;
 	int				there_was_lantern;
 	int				left;
-	t_enemy_vars	e_vars;
 	t_assets	assets;
 }	t_vars;
 
@@ -119,5 +104,9 @@ void	put_pixel_img(t_imgs *img, int x, int y, int color);
 unsigned int	get_pixel_img(t_imgs *img, int x, int y);
 void	put_img_to_img(t_imgs *dst, t_imgs *src, int x, int y);
 void	assets_cleaner(t_vars *v);
+int		check_c(char **map);
+int		check_e(char **map);
+void	flood_fill(char **map, int x, int y);
+
 
 #endif

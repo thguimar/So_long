@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:23:54 by thguimar          #+#    #+#             */
-/*   Updated: 2024/03/20 15:54:54 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:57:09 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,23 +137,23 @@ void	put_image(t_vars ***v, int x, int y, t_assets *assets)
 
 void	assets_initiator1(t_vars *v, t_assets *assets)
 {
-	assets->character = new_file_img("../Assets/character.xpm", v->mlx, v->win);
-	assets->ground = new_file_img("../Assets/ground.xpm", v->mlx, v->win);
-	assets->lantern = new_file_img("../Assets/lantern.xpm", v->mlx, v->win);
+	assets->character = new_file_img("Assets/character.xpm", v->mlx, v->win);
+	assets->ground = new_file_img("Assets/ground.xpm", v->mlx, v->win);
+	assets->lantern = new_file_img("Assets/lantern.xpm", v->mlx, v->win);
 	assets->ground_with_character = new_img(32, 32, v->mlx, v->win);
 	put_img_to_img(assets->ground_with_character, assets->ground, 0, 0);
 	put_img_to_img(assets->ground_with_character, assets->character, 0, 0);
-	assets->character_with_lantern = new_file_img("../Assets/character_lantern.xpm", v->mlx, v->win);
-	assets->door = new_file_img("../Assets/door.xpm", v->mlx, v->win);
+	assets->character_with_lantern = new_file_img("Assets/character_lantern.xpm", v->mlx, v->win);
+	assets->door = new_file_img("Assets/door.xpm", v->mlx, v->win);
 	assets->ground_with_lantern = new_img(32, 32, v->mlx, v->win);
 	put_img_to_img(assets->ground_with_lantern, assets->ground, 0, 0);
 	put_img_to_img(assets->ground_with_lantern, assets->lantern, 0, 0);
-	assets->parchment = new_file_img("../Assets/parchment.xpm", v->mlx, v->win);
+	assets->parchment = new_file_img("Assets/parchment.xpm", v->mlx, v->win);
 	assets->ground_with_parchment = new_img(32, 32, v->mlx, v->win);
 	put_img_to_img(assets->ground_with_parchment, assets->ground, 0, 0);
 	put_img_to_img(assets->ground_with_parchment, assets->parchment, 0, 0);
-//	assets->wall = new_file_img("../Assets/wall.xpm", v->mlx, v->win);
-//	assets->enemy = new_file_img("../Assets/enemy.xpm", v->mlx, v->win);
+//	assets->wall = new_file_img("Assets/wall.xpm", v->mlx, v->win);
+//	assets->enemy = new_file_img("Assets/enemy.xpm", v->mlx, v->win);
 //	assets->ground_with_enemy = new_img(32, 32, v->mlx, v->win);
 //	put_img_to_img(assets->ground_with_enemy, assets->ground, 0, 0);
 //	put_img_to_img(assets->ground_with_enemy, assets->enemy, 0, 0);
