@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:12:51 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/04 19:09:57 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:49:59 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_vars {
 	int				lantern;
 	int				there_was_lantern;
 	int				left;
-	t_assets	assets;
+	t_assets		*assets;
 }	t_vars;
 
 typedef struct s_map
@@ -78,13 +78,13 @@ typedef struct s_map
 	int	y;
 }	t_map;
 
-char	**get_map(char *fmap);
+void	render_map(t_vars *vars, char **argv);
 void	move_left(t_vars *v);
 void	move_right(t_vars *v);
 void	move_up(t_vars *v);
 void	move_down(t_vars *v);
 char	**ft_split(char *s, char c);
-char	*ft_join_strings(char const *s1, char const *s2);
+char	*ft_join_strings(char *s1, char *s2);
 //void	put_image(t_vars ***v, int x, int y, char *img);
 char	*ft_itoa(int n);
 void	put_text(t_vars *v);
@@ -104,9 +104,13 @@ void	put_pixel_img(t_imgs *img, int x, int y, int color);
 unsigned int	get_pixel_img(t_imgs *img, int x, int y);
 void	put_img_to_img(t_imgs *dst, t_imgs *src, int x, int y);
 void	assets_cleaner(t_vars *v);
-int		check_c(char **map);
-int		check_e(char **map);
+int		check_c(t_vars *vars);
+int		check_e(t_vars *vars);
 void	flood_fill(char **map, int x, int y);
-
+void	get_player(t_vars *vars);
+void	init_vars(t_vars *vars);
+char	**get_map(char *fmap, t_vars *vars);
+void final_cleaner(t_vars *vars, int assets);
+void ft_message_error(t_vars *vars, int assets);
 
 #endif

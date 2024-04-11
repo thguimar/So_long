@@ -2,16 +2,20 @@ NAME 	= so_long
 
 CC 		= cc
 
-CFLAGS 	= -Wall -Wextra -Werror -g
+CFLAGS 	= -Wall -Wextra -Werror -g #-fsanitize=address
 
 MLX_DIR = ./mlx/
-MLX = $(MLX_DIR)libmlx.a -lXext -lX11 -lm -lz
+
+OBJ_DIR = objects
+OBJECTS= $(SRC:sources/%.c=%.o)
+
+LIBFT_PATH = ./libft
+LIBFT = $(LIBFT_PATH)/libft.a
 
 SRCS 	=	./sources/ft_join_strings.c\
 			./sources/ft_itoa.c\
 			./sources/ft_get_map.c\
 			./sources/movement.c\
-			./sources/ft_split.c\
 			./sources/put_image.c\
 			./sources/ft_put_text.c\
 			./get_next_line/get_next_line_utils.c\
@@ -24,13 +28,12 @@ SRCS 	=	./sources/ft_join_strings.c\
 			./sources/ft_exit_door.c\
 			./sources/so_long.c\
 			./sources/put_img_utils.c\
+			./sources/cleaner.c
 
 all: $(NAME)
 
-OBJS	= $(SRCS:.c=.o)
-
-$(NAME) : $(OBJS)
-	@$(CC) $(CFLAGS) $(SRCS) -L./minilibx-linux -lmlx_Linux -lXext -lX11 -o $@
+$(NAME) : $(OBJS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(SRCS) -L./minilibx-linux -lmlx_Linux -lXext -lX11 -o $@ $(LIBFT)
 
 	@echo "                                                                         \n\
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡀⠀⠀⠀⠀⠀⠘⠀⣷⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡀⠀⠀⠀⠙⢦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀				\n\
@@ -65,10 +68,18 @@ $(NAME) : $(OBJS)
 $(MLX): 
 	$(MAKE) -C $(MLX_DIR)
 
+$(LIBFT):
+	@make -C $(LIBFT_PATH) all
+
+$(OBJ_DIR)/%.o: sources/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	@rm -f $(OBJS)
+	make -C $(LIBFT_PATH) clean
+	@rm -f *.o
 
 fclean: clean
-	@rm -f $(NAME)
+	make -C $(LIBFT_PATH) fclean
+	@rm -f $(NAME) $(OBJECTS)
 
 re: fclean all

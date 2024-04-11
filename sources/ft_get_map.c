@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:22:38 by thguimar          #+#    #+#             */
-/*   Updated: 2024/03/21 10:19:02 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:15:45 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ char	*ft_strdup(const char *s1)
 	return (ptr);
 }
 
-static void ft_message_error(void)
+void ft_message_error(t_vars *vars, int assets)
 {
-    perror("ERROR");
+    printf("ERROR");
+	final_cleaner(vars, assets);
 	exit(1);
 }
 
@@ -48,28 +49,57 @@ int get_height(char **map)
     return (i);
 }
 
-char	**get_map(char *fmap)
+char	**get_map(char *fmap, t_vars *vars)
 {
 	char	*line;
 	char	*all_lines;
 	int		fd;
+	//char	*all_lines_backup;
 
 	line = "";
 	all_lines = ft_strdup("");
 	fd = open(fmap, O_RDONLY);
 	if (fd < 0)
-		ft_message_error();
+		ft_message_error(vars, 0);
 	while (line)
 	{
 		line = get_next_line(fd);
+		
 		if (line == NULL || line[0] == '\n')
 			break ;
 		all_lines = ft_join_strings(all_lines, line);
 		free(line);
 	}
-	free(line);
 	close(fd);
-	if (all_lines[0] == '\0')
-		ft_message_error();
+	if (!all_lines)
+		ft_message_error(vars, 0);
 	return (ft_split(all_lines, '\n'));
+}
+
+void	get_player(t_vars *vars)
+{
+	int	map_y;
+	int	backup_w;
+	int	map_x;
+
+	map_y = 0;
+	backup_w = vars->win_w;
+	while (vars->win_h > 0)
+	{
+		map_x = 0;
+		while (vars->win_w > 0)
+		{
+			if (vars->map[map_y][map_x] == 'P')
+			{
+				vars->x_p = map_x;
+				vars->y_p = map_y;
+			}
+			vars->win_w--;
+			map_x++;
+		}
+		vars->win_w = backup_w;
+		map_y++;
+		vars->win_h--;
+	}
+	init_vars(vars);
 }

@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:53:37 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/04 19:21:44 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:19:46 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,32 +55,33 @@ void	flood_fill(char **map, int x, int y)
 		w++;
 	while (map[h])
 		h++;
-	if (x < 0 || y < 0 || x >= w || y >= h)
+	if (x < 0 || y < 0 || x >= w  || y >= h)
 		return ;
-	if (map[y][x] == '1' || map[y][x] == 'W')
+	if (map[y][x] == '1' || map[y][x] == 'F')
 		return ;
-	map[y][x] = 'W';
+	map[y][x] = 'F';
 	flood_fill(map, (x + 1), y);
 	flood_fill(map, (x - 1), y);
 	flood_fill(map, x, (y + 1));
 	flood_fill(map, x, (y - 1));
 }
 
-int	check_c(char **map)
+int	check_c(t_vars *vars)
 {
 	int	i;
 	int	n;
 
 	i = 0;
 	n = 0;
-	while (map[i])
+	while (vars->map[i])
 	{
-		while (map[i][n] != '\0' && map[i][n] != '\n')
+		while (vars->map[i][n] != '\0' && vars->map[i][n] != '\n')
 		{
 			n++;
-			if (map[i][n] == 'C')
+			if (vars->map[i][n - 1] == 'C')
 			{
 				printf("YOU FRICKING BASTARD!");
+				final_cleaner(vars, 1);
 				exit(1);
 			}
 		}
@@ -90,21 +91,22 @@ int	check_c(char **map)
 	return (1);
 }
 
-int	check_e(char **map)
+int	check_e(t_vars *vars)
 {
 	int	i;
 	int	n;
 
 	i = 0;
 	n = 0;
-	while (map[i])
+	while (vars->map[i])
 	{
-		while (map[i][n] != '\0' && map[i][n] != '\n')
+		while (vars->map[i][n] != '\0' && vars->map[i][n] != '\n')
 		{
 			n++;
-			if (map[i][n] == 'E')
+			if (vars->map[i][n] == 'E')
 			{
 				printf("YOU FRICKING BASTARD!");
+				final_cleaner(vars, 1);
 				exit(1);
 			}
 		}
@@ -121,6 +123,7 @@ void	check_elements(t_vars *vars)
 	map.c = 0;
 	map.p = 0;
 	map.e = 0;
+	map.l = 0;
 	map.y = get_height(vars->map);
 	while (map.y--)
 	{

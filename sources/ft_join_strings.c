@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_join_strings.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thguimar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 08:28:59 by thguimar          #+#    #+#             */
-/*   Updated: 2024/03/27 08:29:20 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:05:35 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned int	ft_strlen(const char *str)
 	return (num);
 }
 
-char	*ft_join_strings(char const *s1, char const *s2)
+char	*ft_join_strings(char *s1, char *s2)
 {
 	unsigned int	s1_len;
 	unsigned int	s2_len;
@@ -42,5 +42,6 @@ char	*ft_join_strings(char const *s1, char const *s2)
 	while (s2_len-- != 0)
 		ptr[i++] = *s2++;
 	ptr[i] = '\0';
+	//free(s1);
 	return (ptr);
 }

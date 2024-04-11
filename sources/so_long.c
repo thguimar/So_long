@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:24:07 by thguimar          #+#    #+#             */
-/*   Updated: 2024/03/28 21:25:13 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:12:26 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,7 @@ int	key_hook(int keycode, t_vars *vars)
 	else if (keycode == XK_Escape)
 	{
 		x = 0;
-		while (vars->map[x])
-		{
-			free(vars->map[x]);
-			x++;
-		}
-		free(vars->map);
+		final_cleaner(vars, 1);
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(1);
 	}
@@ -41,21 +36,12 @@ int	key_hook(int keycode, t_vars *vars)
 
 int	ft_exit(t_vars *v)
 {
-	int	x;
-
-	x = 0;
-	while (v->map[x])
-	{
-		free(v->map[x]);
-		x++;
-	}
-	free(v->map);
-	mlx_destroy_window(v->mlx, v->win);
+	final_cleaner(v, 1);
 	exit(1);
 	return (0);
 }
 
-void	render_map(t_vars *vars)
+void	render_map(t_vars *vars, char **argv)
 {
 	int	map_y;
 	int	y1;
@@ -66,6 +52,12 @@ void	render_map(t_vars *vars)
 	map_y = 0;
 	y1 = 0;
 	backup_w = vars->win_w;
+	get_player(vars);
+	flood_fill(vars->map, vars->x_p, vars->y_p);
+	check_c(vars);
+	check_e(vars);
+	final_cleaner(vars, 0);
+	vars->map = get_map(argv[1], vars);
 	while (vars->win_h > 0)
 	{
 		map_x = 0;
@@ -78,13 +70,14 @@ void	render_map(t_vars *vars)
 			x1 += 32;
 		}
 		vars->win_w = backup_w;
+		x1 = (map_x * 32);
 		map_y++;
 		vars->win_h--;
-		y1 += 32;
+		y1 = (map_y * 32);
 	}
 }
 
-static void	init_vars(t_vars *vars)
+void	init_vars(t_vars *vars)
 {
 	vars->collect = 0;
 	vars->lantern = 0;
@@ -102,30 +95,28 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc != 2)
 	{
-		perror("ERROR");
+		printf("ERROR");
 		exit(1);
 	}
 	(void)argv;
 	check_file_is_valid(argv[1]);
-	vars.map = get_map(argv[1]);
+	printf(".\n");
+	vars.map = get_map(argv[1], &vars);
+	printf(".\n");
 	if (vars.map != NULL)
 	{
-		check_map_valid(&vars);
 		init_vars(&vars);
+		check_map_valid(&vars);
 		vars.mlx = mlx_init();
 		vars.win = mlx_new_window (vars.mlx,
 			       	vars.win_w * 32, vars.win_h * 32, "So-Long");
-		render_map(&vars);
+		render_map(&vars, argv);
 		mlx_string_put(vars.mlx, vars.win, 5, 10, 0xffffff, "Move: 0");
 		mlx_hook(vars.win, 2, (1L << 0), key_hook, &vars);
 		mlx_hook(vars.win, 17, (1L << 0), ft_exit, &vars);
 		mlx_loop(vars.mlx);
 	}
-	while (vars.map[i] != NULL)
-	{
-		free(vars.map[i]);
-		i++;
-	}
-	assets_cleaner(&vars);
+	final_cleaner(&vars, 1);
+	free(vars.assets);
 	return (0);
 }

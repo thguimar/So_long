@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:00:09 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/04 19:19:34 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:07:16 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,4 @@ void	check_map_valid(t_vars *vars)
 	check_is_rectangular(vars);
 	check_walls(vars);
 	check_elements(vars);
-	flood_fill(vars->map, 0, 0);
-	check_c(vars->map);
-	check_e(vars->map);
 }
