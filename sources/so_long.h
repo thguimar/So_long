@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:12:51 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/11 15:49:59 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:35:24 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <X11/keysym.h>
+# include "../libft/libft.h"
 
 typedef struct s_imgs
 {
@@ -83,7 +84,6 @@ void	move_left(t_vars *v);
 void	move_right(t_vars *v);
 void	move_up(t_vars *v);
 void	move_down(t_vars *v);
-char	**ft_split(char *s, char c);
 char	*ft_join_strings(char *s1, char *s2);
 //void	put_image(t_vars ***v, int x, int y, char *img);
 char	*ft_itoa(int n);
@@ -97,7 +97,7 @@ void	ft_error(t_vars *vars, char *message);
 int		animation(t_vars *vars);
 int		get_position_for_enemy(t_vars **vars);
 void	exit_door(t_vars *v);
-unsigned int	ft_strlen(const char *str);
+//unsigned int	ft_strlen(const char *str);
 t_imgs	*new_img(int w, int h, t_vars *mlx, t_vars *window);
 t_imgs	*new_file_img(char *path, void *mlx, void *window);
 void	put_pixel_img(t_imgs *img, int x, int y, int color);
@@ -112,5 +112,6 @@ void	init_vars(t_vars *vars);
 char	**get_map(char *fmap, t_vars *vars);
 void final_cleaner(t_vars *vars, int assets);
 void ft_message_error(t_vars *vars, int assets);
+void	assets_initiator(t_vars *v);
 
 #endif

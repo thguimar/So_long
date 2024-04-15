@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:53:37 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/11 15:19:46 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:12:04 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	check_c(t_vars *vars)
 			if (vars->map[i][n - 1] == 'C')
 			{
 				printf("YOU FRICKING BASTARD!");
-				final_cleaner(vars, 1);
+				final_cleaner(vars, 0);
 				exit(1);
 			}
 		}
@@ -106,7 +106,7 @@ int	check_e(t_vars *vars)
 			if (vars->map[i][n] == 'E')
 			{
 				printf("YOU FRICKING BASTARD!");
-				final_cleaner(vars, 1);
+				final_cleaner(vars, 0);
 				exit(1);
 			}
 		}

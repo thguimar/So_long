@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:04:23 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/11 17:11:05 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:36:59 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,41 @@
 
 void	assets_cleaner(t_vars *v)
 {
-	printf("entrou\n");
 	mlx_destroy_image(v->mlx, v->assets->character->img);
-	free (v->assets->character);
+	free(v->assets->character);
 	mlx_destroy_image(v->mlx, v->assets->ground->img);
-	free (v->assets->ground);
+	free(v->assets->ground);
 	mlx_destroy_image(v->mlx, v->assets->lantern->img);
-	free (v->assets->lantern);
+	free(v->assets->lantern);
 	mlx_destroy_image(v->mlx, v->assets->character_left->img);	
-	free (v->assets->character_left);
+	free(v->assets->character_left);
 	mlx_destroy_image(v->mlx, v->assets->ground_with_character_left->img);
-	free (v->assets->ground_with_character_left);
+	free(v->assets->ground_with_character_left);
 	mlx_destroy_image(v->mlx, v->assets->ground_with_character->img);
-	free (v->assets->ground_with_character);
+	free(v->assets->ground_with_character);
 	mlx_destroy_image(v->mlx, v->assets->character_with_lantern->img);
-	free (v->assets->character_with_lantern);
+	free(v->assets->character_with_lantern);
 	mlx_destroy_image(v->mlx, v->assets->character_with_lantern2->img);
-	free (v->assets->character_with_lantern2);
+	free(v->assets->character_with_lantern2);
 	mlx_destroy_image(v->mlx, v->assets->door->img);
-	free (v->assets->door);
+	free(v->assets->door);
 	mlx_destroy_image(v->mlx, v->assets->ground_with_lantern->img);
-	free (v->assets->ground_with_lantern);
+	free(v->assets->ground_with_lantern);
 	mlx_destroy_image(v->mlx, v->assets->parchment->img);
-	free (v->assets->parchment);
+	free(v->assets->parchment);
 	mlx_destroy_image(v->mlx, v->assets->ground_with_parchment->img);
-	free (v->assets->ground_with_parchment);
+	free(v->assets->ground_with_parchment);
 	mlx_destroy_image(v->mlx, v->assets->wall->img);
-	free (v->assets->wall);
+	free(v->assets->wall);
 	mlx_destroy_image(v->mlx, v->assets->ground_with_door->img);
 	free (v->assets->ground_with_door);
 	mlx_destroy_image(v->mlx, v->assets->ground_with_character_with_lantern->img);
-	free (v->assets->ground_with_character_with_lantern);
+	free(v->assets->ground_with_character_with_lantern);
 	mlx_destroy_image(v->mlx, v->assets->ground_with_character_with_lantern2->img);
-	free (v->assets->ground_with_character_with_lantern2);
+	free(v->assets->ground_with_character_with_lantern2);
+	/*mlx_destroy_image(v->mlx, v->img);
+	free(v->img);*/
+	free(v->assets);
 }
 
 void	assets_initiator(t_vars *v)
@@ -85,8 +87,6 @@ void	assets_initiator(t_vars *v)
 
 void    put_image_to_map(char p, int x1, int y1, t_vars *v)
 {
-	v->assets = malloc(sizeof(t_assets));
-	assets_initiator(v);
         if (p == '1')
             mlx_put_image_to_window(v->mlx, v->win, v->assets->wall->img, x1, y1);
         else if (p == 'C')

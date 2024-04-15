@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:24:07 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/11 17:12:26 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:47:38 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	render_map(t_vars *vars, char **argv)
 	check_e(vars);
 	final_cleaner(vars, 0);
 	vars->map = get_map(argv[1], vars);
+	vars->assets = malloc(sizeof(t_assets));
+	assets_initiator(vars);
 	while (vars->win_h > 0)
 	{
 		map_x = 0;
@@ -100,9 +102,7 @@ int	main(int argc, char **argv)
 	}
 	(void)argv;
 	check_file_is_valid(argv[1]);
-	printf(".\n");
 	vars.map = get_map(argv[1], &vars);
-	printf(".\n");
 	if (vars.map != NULL)
 	{
 		init_vars(&vars);
@@ -117,6 +117,5 @@ int	main(int argc, char **argv)
 		mlx_loop(vars.mlx);
 	}
 	final_cleaner(&vars, 1);
-	free(vars.assets);
 	return (0);
 }

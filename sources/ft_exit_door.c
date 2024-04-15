@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 15:00:04 by thguimar          #+#    #+#             */
-/*   Updated: 2024/03/28 20:26:37 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:52:43 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 
 void    exit_door(t_vars *v)
 {
-    int x;
-
-    x = 0;
-    while (v->map[x])
-    {
-        free(v->map[x]);
-        x++;
-    }
-    free(v->map);
-    assets_cleaner(v);
-    mlx_destroy_window(v->mlx, v->win);
+    final_cleaner(v, 1);
     exit(1);
 }

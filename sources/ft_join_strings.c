@@ -6,13 +6,13 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 08:28:59 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/11 16:05:35 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:16:38 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-unsigned int	ft_strlen(const char *str)
+/*unsigned int	ft_strlen(const char *str)
 {
 	unsigned int	num;
 
@@ -20,7 +20,7 @@ unsigned int	ft_strlen(const char *str)
 	while (str[num] != '\0')
 		num++;
 	return (num);
-}
+}*/
 
 char	*ft_join_strings(char *s1, char *s2)
 {

@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:22:38 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/11 18:15:45 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:37:01 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**get_map(char *fmap, t_vars *vars)
 	char	*line;
 	char	*all_lines;
 	int		fd;
-	//char	*all_lines_backup;
+	char	*temp;
 
 	line = "";
 	all_lines = ft_strdup("");
@@ -67,7 +67,9 @@ char	**get_map(char *fmap, t_vars *vars)
 		
 		if (line == NULL || line[0] == '\n')
 			break ;
-		all_lines = ft_join_strings(all_lines, line);
+		temp = ft_join_strings(all_lines, line);
+		free(all_lines);
+		all_lines = temp;
 		free(line);
 	}
 	close(fd);

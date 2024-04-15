@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:35:34 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/11 15:11:10 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:04:03 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,14 @@
 
 static void lantern(t_vars	*v)
 {
-	int		img_w;
-	int		img_h;
-
 	v->lantern--;
 	v->map[(v->y_p / 32)][(v->x_p / 32)] = '0';
-	v->img = mlx_xpm_file_to_image(
-			v->mlx, "Assets/ground.xpm", &img_w, &img_h);
-/*	mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->wall->img, v->x_p, v->y_p);*/
 }
 
 static void	collected(t_vars *v)
 {
-	int		img_w;
-	int		img_h;
-
 	v->collect--;
 	v->map[(v->y_p / 32)][(v->x_p / 32)] = '0';
-	v->img = mlx_xpm_file_to_image(
-			v->mlx, "Assets/ground.xpm", &img_w, &img_h);
-/*	mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character->img, v->x_p, v->y_p);*/
 }
 
 void	move_left(t_vars *v)
