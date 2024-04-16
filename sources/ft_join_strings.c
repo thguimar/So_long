@@ -12,16 +12,6 @@
 
 #include "so_long.h"
 
-/*unsigned int	ft_strlen(const char *str)
-{
-	unsigned int	num;
-
-	num = 0;
-	while (str[num] != '\0')
-		num++;
-	return (num);
-}*/
-
 char	*ft_join_strings(char *s1, char *s2)
 {
 	unsigned int	s1_len;
@@ -42,6 +32,5 @@ char	*ft_join_strings(char *s1, char *s2)
 	while (s2_len-- != 0)
 		ptr[i++] = *s2++;
 	ptr[i] = '\0';
-	//free(s1);
 	return (ptr);
 }

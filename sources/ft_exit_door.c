@@ -12,8 +12,8 @@
 
 #include "so_long.h"
 
-void    exit_door(t_vars *v)
+void	exit_door(t_vars *v)
 {
-    final_cleaner(v, 1);
-    exit(1);
+	final_cleaner(v, 1);
+	exit(1);
 }

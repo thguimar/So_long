@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:22:38 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/15 18:37:01 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/16 23:22:20 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ char	*ft_strdup(const char *s1)
 	return (ptr);
 }
 
-void ft_message_error(t_vars *vars, int assets)
+void	ft_message_error(t_vars *vars, int assets)
 {
-    printf("ERROR");
+	write(1, "ERROR\n", 7);
 	final_cleaner(vars, assets);
 	exit(1);
 }
 
-int get_height(char **map)
+int	get_height(char **map)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (map[i] != NULL)
-        i++;
-    return (i);
+	i = 0;
+	while (map[i] != NULL)
+		i++;
+	return (i);
 }
 
 char	**get_map(char *fmap, t_vars *vars)
@@ -54,24 +54,13 @@ char	**get_map(char *fmap, t_vars *vars)
 	char	*line;
 	char	*all_lines;
 	int		fd;
-	char	*temp;
 
 	line = "";
 	all_lines = ft_strdup("");
 	fd = open(fmap, O_RDONLY);
 	if (fd < 0)
 		ft_message_error(vars, 0);
-	while (line)
-	{
-		line = get_next_line(fd);
-		
-		if (line == NULL || line[0] == '\n')
-			break ;
-		temp = ft_join_strings(all_lines, line);
-		free(all_lines);
-		all_lines = temp;
-		free(line);
-	}
+	all_lines = nengue(fd, line, all_lines);
 	close(fd);
 	if (!all_lines)
 		ft_message_error(vars, 0);

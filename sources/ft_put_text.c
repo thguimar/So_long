@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:34:47 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/11 15:11:26 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/16 23:31:04 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	put_text(t_vars *v)
 	mlx_put_image_to_window(
 		v->mlx, v->win, v->assets->wall->img, 32 * 2, 0);
 	mlx_string_put(v->mlx, v->win, 5, 10, 0xfffffff, text);
-	printf("%s\n", number);
+	ft_printf("%s\n", number);
 	free(text);
 	free(number);
 }

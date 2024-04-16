@@ -6,19 +6,13 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 15:35:34 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/15 17:04:03 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/16 22:34:29 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void lantern(t_vars	*v)
-{
-	v->lantern--;
-	v->map[(v->y_p / 32)][(v->x_p / 32)] = '0';
-}
-
-static void	collected(t_vars *v)
+void	collected(t_vars *v)
 {
 	v->collect--;
 	v->map[(v->y_p / 32)][(v->x_p / 32)] = '0';
@@ -44,17 +38,19 @@ void	move_left(t_vars *v)
 		lantern(v);
 	v->left = 1;
 	if (v->there_was_lantern == 1 && v->lantern == 0)
-		mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character_with_lantern2->img, v->x_p, v->y_p);
+		mlx_put_image_to_window(v->mlx, v->win,
+			v->assets->gwcwl2->img,
+			v->x_p, v->y_p);
 	else
-		mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character_left->img, v->x_p, v->y_p);
+		mlx_put_image_to_window(v->mlx, v->win,
+			v->assets->gwc2->img,
+			v->x_p, v->y_p);
 }
 
 void	move_right(t_vars *v)
 {
-	mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground->img, v->x_p, v->y_p);
+	mlx_put_image_to_window(v->mlx, v->win,
+		v->assets->ground->img, v->x_p, v->y_p);
 	if (v->map[(v->y_p / 32)][(v->x_p / 32) + 1] == 'E')
 	{
 		if (v->collect <= 0)
@@ -71,17 +67,19 @@ void	move_right(t_vars *v)
 		lantern(v);
 	v->left = 0;
 	if (v->there_was_lantern == 1 && v->lantern == 0)
-		mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character_with_lantern->img, v->x_p, v->y_p);
+		mlx_put_image_to_window(v->mlx, v->win,
+			v->assets->gwcwl->img,
+			v->x_p, v->y_p);
 	else
-		mlx_put_image_to_window(
-			v->mlx, v->win, v->assets->ground_with_character->img, v->x_p, v->y_p);
+		mlx_put_image_to_window(v->mlx, v->win,
+			v->assets->gwc->img,
+			v->x_p, v->y_p);
 }
 
 void	move_up(t_vars *v)
 {
-	mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground->img, v->x_p, v->y_p);
+	mlx_put_image_to_window(v->mlx, v->win,
+		v->assets->ground->img, v->x_p, v->y_p);
 	if ((v)->map[((v)->y_p / 32) - 1][((v)->x_p / 32)] == 'E')
 	{
 		if ((v)->collect <= 0)
@@ -92,30 +90,13 @@ void	move_up(t_vars *v)
 		(v)->y_p -= 32;
 		put_text(v);
 	}
-	if ((v)->map[((v)->y_p / 32)][((v)->x_p / 32)] == 'C')
-		collected(v);
-	if ((v)->map[((v)->y_p / 32)][((v)->x_p / 32)] == 'L')
-		lantern(v);
-	if (v->there_was_lantern == 1 && v->lantern == 0 && v->left == 0)
-		mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character_with_lantern->img, v->x_p, v->y_p);
-	else if (v->left == 1)
-	{
-		mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character_left->img, v->x_p, v->y_p);
-		if (v->there_was_lantern == 1 && v->lantern == 0)
-		mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character_with_lantern2->img, v->x_p, v->y_p);
-	}
-	else
-		mlx_put_image_to_window(
-			v->mlx, v->win, v->assets->ground_with_character->img, v->x_p, v->y_p);
+	move_idk(v);
 }
 
 void	move_down(t_vars *v)
 {
-	mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground->img, v->x_p, v->y_p);
+	mlx_put_image_to_window(v->mlx, v->win,
+		v->assets->ground->img, v->x_p, v->y_p);
 	if (v->map[(v->y_p / 32) + 1][(v->x_p / 32)] == 'E')
 	{
 		if (v->collect <= 0)
@@ -126,22 +107,5 @@ void	move_down(t_vars *v)
 		v->y_p += 32;
 		put_text(v);
 	}
-	if (v->map[(v->y_p / 32)][(v->x_p / 32)] == 'C')
-		collected(v);
-	if (v->map[(v->y_p / 32)][(v->x_p / 32)] == 'L')
-		lantern(v);
-	if (v->there_was_lantern == 1 && v->lantern == 0 && v->left == 0)
-		mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character_with_lantern->img, v->x_p, v->y_p);
-	else if (v->left == 1)
-	{
-		mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character_left->img, v->x_p, v->y_p);
-		if (v->there_was_lantern == 1 && v->lantern == 0)
-		mlx_put_image_to_window(
-		v->mlx, v->win, v->assets->ground_with_character_with_lantern2->img, v->x_p, v->y_p);
-	}
-	else
-		mlx_put_image_to_window(
-			v->mlx, v->win, v->assets->ground_with_character->img, v->x_p, v->y_p);
+	move_idk(v);
 }

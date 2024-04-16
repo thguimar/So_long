@@ -23,12 +23,12 @@ SRCS 	=	./sources/ft_join_strings.c\
 			./sources/check_file.c\
 			./sources/map_utils.c\
 			./sources/check_map.c\
-			./sources/animations.c\
-			./sources/ft_animations_utils.c\
 			./sources/ft_exit_door.c\
 			./sources/so_long.c\
 			./sources/put_img_utils.c\
-			./sources/cleaner.c
+			./sources/cleaner.c\
+			./sources/more1.c\
+			./sources/more2.c
 
 all: $(NAME)
 

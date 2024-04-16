@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:24:17 by thguimar          #+#    #+#             */
-/*   Updated: 2024/03/20 11:38:23 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/16 23:27:25 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	check_file_is_valid(char *file_line)
 		}
 		file_line++;
 	}
-	printf("ERROR: file is not valid");
+	write(1, "ERROR: file is not valid\n", 25);
 	exit(1);
 }

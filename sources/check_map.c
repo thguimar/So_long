@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 13:00:09 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/05 16:07:16 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/16 23:32:42 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_error(t_vars *vars, char *message)
 		x++;
 	}
 	free (vars->map);
-	printf("%s", message);
+	ft_printf("%s", message);
 	exit (1);
 }
 
@@ -53,7 +53,7 @@ static void	check_is_rectangular(t_vars *vars)
 	}
 }
 
-static int check_line(char *line)
+static int	check_line(char *line)
 {
 	int	i;
 
@@ -67,9 +67,9 @@ static int check_line(char *line)
 	return (0);
 }
 
-static void check_walls(t_vars *v)
+static void	check_walls(t_vars *v)
 {
-	int	i;
+	int		i;
 	char	*message;
 
 	message = "[ERROR] Not surrounded by walls";
