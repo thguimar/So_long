@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:24:07 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/16 23:26:59 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:46:57 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	init_vars(t_vars *vars)
 	}
 	vars->win_w = ft_strlen(vars->map[0]);
 	vars->win_h = get_height(vars->map);
+	vars->left = 0;
 }
 
 int	main(int argc, char **argv)

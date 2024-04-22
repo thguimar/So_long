@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:04:23 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/16 22:37:14 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:00:29 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	assets_cleaner(t_vars *v)
 	free(v->assets->gwc);
 	mlx_destroy_image(v->mlx, v->assets->cwl->img);
 	free(v->assets->cwl);
+	mlx_destroy_image(v->mlx, v->assets->gwdwc->img);
+	free(v->assets->gwdwc);
 	assets_cleaner2(v);
 }
 
@@ -73,6 +75,9 @@ void	assets_initiator2(t_vars *v)
 	v->assets->gwcwl2 = new_img(32, 32, v->mlx, v->win);
 	put_img_to_img(v->assets->gwcwl2, v->assets->ground, 0, 0);
 	put_img_to_img(v->assets->gwcwl2, v->assets->cwl2, 0, 0);
+	v->assets->gwdwc = new_img(32, 32, v->mlx, v->win);
+	put_img_to_img(v->assets->gwdwc, v->assets->gwd, 0, 0);
+	put_img_to_img(v->assets->gwdwc, v->assets->character, 0, 0);
 }
 
 void	assets_initiator(t_vars *v)
@@ -103,7 +108,7 @@ void	put_image_to_map(char p, int x1, int y1, t_vars *v)
 		v->collect++;
 	}
 	else if (p == 'E')
-		mlx_put_image_to_window(v->mlx, v->win, v->assets->gwd->img, x1, y1);
+		invisible_door(v, x1, y1);
 	else if (p == 'P')
 	{
 		v->y_p = y1;

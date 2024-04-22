@@ -6,7 +6,7 @@
 /*   By: thguimar <thguimar@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:12:51 by thguimar          #+#    #+#             */
-/*   Updated: 2024/04/16 23:22:15 by thguimar         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:12:26 by thguimar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ typedef struct s_imgs
 	void		*img;
 }				t_imgs;
 
-typedef struct s_assets {
+typedef struct s_assets
+{
 	t_imgs	*lantern;
 	t_imgs	*ground;
 	t_imgs	*character;
@@ -45,6 +46,7 @@ typedef struct s_assets {
 	t_imgs	*gwp;
 	t_imgs	*wall;
 	t_imgs	*gwd;
+	t_imgs	*gwdwc;
 	t_imgs	*gwcwl;
 	t_imgs	*c2;
 	t_imgs	*gwc2;
@@ -52,7 +54,8 @@ typedef struct s_assets {
 	t_imgs	*gwcwl2;
 }	t_assets;
 
-typedef struct s_vars {
+typedef struct s_vars
+{
 	void			*mlx;
 	void			*img;
 	void			*win;
@@ -60,6 +63,8 @@ typedef struct s_vars {
 	int				win_h;
 	int				x_p;
 	int				y_p;
+	int				e_x;
+	int				e_y;
 	int				movement;
 	char			**map;
 	int				collect;
@@ -113,7 +118,9 @@ char			unknown_element(t_vars *v, char c);
 void			assets_initiator(t_vars *v);
 void			lantern(t_vars *v);
 void			move_idk(t_vars *v);
+void			exit_verifier(t_vars *v, int xy, int vet);
 void			collected(t_vars *v);
+void			invisible_door(t_vars *v, int x1, int y1);
 char			*nengue(int fd, char *line, char *all_lines);
 int				map_xloop(t_vars *vars, int x1, int y1, int map_y);
 void			flood_checker(t_vars *vars, char **argv);
